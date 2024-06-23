@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classifier</title>
+</head>
+<body>
+    <h1>성별 분류</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit">예측</button>
+    </form>
+    {% if image_file %}
+    <h2>Result</h2>
+    <p><strong>예상 성별:</strong> {{ class_name }}</p>
+    <p><strong>신뢰도:</strong> {{ confidence * 100 }}%</p>
+    <img src="{{ url_for('static', filename='image/' + image_file) }}" alt="predicted_image" style="max-width: 128px; max-height: 128px;">
+    {% endif %}
+</body>
+</html>
